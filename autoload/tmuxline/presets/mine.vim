@@ -10,7 +10,10 @@ fun! tmuxline#presets#mine#get()
         \ 'win' : '#I:#W',
         \ 'cwin': '#W',
         \ 'x'   : '#H',
-        \ 'y'   : '#(cut -d " " -f 1 /proc/loadavg)',
+        \ 'y': [
+        \   "#(free | awk '/Mem/ { printf(\"%.2f%%\", \$3/\$2 * 100) }')",
+        \   "#(cut -d \" \" -f 1 /proc/loadavg)",
+        \ ],
         \ 'z'   : '%D %H:%M',
         \ 'options': {
         \'status-justify': 'left'}
